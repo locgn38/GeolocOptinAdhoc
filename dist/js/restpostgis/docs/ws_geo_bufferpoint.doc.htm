@@ -1,0 +1,121 @@
+<div id="doctitle">
+	<h2>Buffer Point</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v2/ws_geo_bufferpoint.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Buffer an XY coordinate by a specified distance and return selected features.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>x</td>
+				<td>The X coordinate of the point to buffer.</td>
+			</tr>
+			<tr>
+				<td>y</td>
+				<td>The Y coordinate of the point to buffer.</td>
+			</tr>
+			<tr>
+				<td>srid</td>
+				<td>The SRID of the input point. 2264 is NC State Plane NAD83 (feet), 
+					4326 is decimal degrees.</td>
+			</tr>
+			<tr>
+				<td>geotable</td>
+				<td>The geotable to return features from.</td>
+			</tr>
+			<tr>
+				<td>fields</td>
+				<td>Comma delimited list of fields to return.</td>
+			</tr>
+			<tr>
+				<td>parameters</td>
+				<td>SQL where parameters. Can be left blank.</td>
+			</tr>
+			<tr>
+				<td>distance</td>
+				<td>The number of units to be buffered. The units are the units of the
+					geotable SRID, and for Mecklenburg County data will be feet.</td>
+			</tr>
+			<tr>
+				<td>order</td>
+				<td>The field(s) to order the return by. If left blank, the return is ordered
+				by distance (closest features first).</td>
+			</tr>
+			<tr>
+				<td>limit</td>
+				<td>Limit to the number of features returned. If left blank, the default is to return
+				all records. </td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output, 'kml' for kml output, or
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<p>Service output is entirely dependant upon the fields parameter.</p>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;rows total-rows="4"&gt;
+	&lt;row&gt;
+	&lt;column name="pid"&gt;20510S99&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="pid"&gt;20510231&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="pid"&gt;20510234&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="pid"&gt;20510232&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"4","rows":[{"row":{"pid":"20510S99"}},{"row":{"pid":"20510231"}},
+	{"row":{"pid":"20510234"}},{"row":{"pid":"20510232"}}]}
+	</pre>
+	
+	<p>Sample KML Output</p>
+	<pre>
+    &lt;?xml version="1.0" encoding="utf-8"?&gt;
+    &lt;kml xmlns="http://www.opengis.net/kml/2.2"&gt;
+      &lt;Document&gt;
+        &lt;Placemark&gt;
+          &lt;name&gt;Monroe Middle School&lt;/name&gt;
+          &lt;Point&gt;
+            &lt;coordinates&gt;-80.538976082676783,34.973003351596738&lt;/coordinates&gt;
+          &lt;/Point&gt;
+          &lt;ExtendedData&gt;
+            &lt;Data name="name"&gt;
+              &lt;value&gt;Monroe Middle School&lt;/value&gt;
+            &lt;/Data&gt;
+          &lt;/ExtendedData&gt;
+        &lt;/Placemark&gt;
+      &lt;/Document&gt;
+    &lt;/kml&gt;
+	</pre>
+</div>

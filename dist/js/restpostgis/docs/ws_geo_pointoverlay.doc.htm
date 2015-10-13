@@ -1,0 +1,97 @@
+<div id="doctitle">
+	<h2>Point Overlay</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v1/ws_geo_pointoverlay.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Takes a user defined point and overlays it with a specified geotable.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>x</td>
+				<td>X coordinate.</td>
+			</tr>
+			<tr>
+				<td>y</td>
+				<td>Y coordinate.</td>
+			</tr>
+			<tr>
+				<td>srid</td>
+				<td>SRID of the XY coordinate.</td>
+			</tr>
+			<tr>
+				<td>geotable</td>
+				<td>The geotable that has the features you want selected by the 
+					specified point.</td>
+			</tr>
+			<tr>
+				<td>fields</td>
+				<td>Comma delimited list of fields to be returned.</td>
+			</tr>
+			<tr>
+				<td>parameters</td>
+				<td>SQL where parameters.</td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output, 'kml' for kml output, or
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<p>Service output is entirely dependant upon the fields parameter.</p>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;rows total-rows="1"&gt;
+	&lt;row&gt;
+	&lt;column name="precno"&gt;97&lt;/column&gt;
+	&lt;column name="cc"&gt;2&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"1","rows":[{"row":{"precno":"97","cc":"2"}}]}
+	</pre>
+	
+	<p>Sample KML Output</p>
+	<pre>
+    &lt;?xml version="1.0" encoding="utf-8"?&gt;
+    &lt;kml xmlns="http://www.opengis.net/kml/2.2"&gt;
+      &lt;Document&gt;
+        &lt;Placemark&gt;
+          &lt;name&gt;Monroe Middle School&lt;/name&gt;
+          &lt;Point&gt;
+            &lt;coordinates&gt;-80.538976082676783,34.973003351596738&lt;/coordinates&gt;
+          &lt;/Point&gt;
+          &lt;ExtendedData&gt;
+            &lt;Data name="name"&gt;
+              &lt;value&gt;Monroe Middle School&lt;/value&gt;
+            &lt;/Data&gt;
+          &lt;/ExtendedData&gt;
+        &lt;/Placemark&gt;
+      &lt;/Document&gt;
+    &lt;/kml&gt;
+	</pre>
+</div>

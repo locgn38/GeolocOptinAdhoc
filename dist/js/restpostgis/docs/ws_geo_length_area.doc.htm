@@ -1,0 +1,91 @@
+<div id="doctitle">
+	<h2>Get Length and Area</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v1/ws_geo_length_area.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Get the length and area of a string of points in x,y|x,y|x,y
+	format. This is particularly useful	with the Google Maps API v3
+	which, at this time, lacks the line.getLength() and polygon.getArea() in API v2</p>
+</div>
+
+<div id="docinput"><tr>
+				<td>out_srid</td>
+				<td>The projection for which you want to use for your length and
+				area values. For example SRID 2264 outputs units in feet.</td>
+			</tr>
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>in_srid</td>
+				<td>The projection of the string of input points.</td>
+			</tr>
+			<tr>
+				<td>out_srid</td>
+				<td>The projection you want to use for your length and
+				area values. For example SRID 2264 outputs units in feet.</td>
+			</tr>
+			<tr>
+				<td>points</td>
+				<td>A string of points in x,y|x,y|x,y format for which you want to
+				get length and area measurements.</td><tr>
+				<td>length</td>
+				<td>The length of the string of points in units of out_srid</td>
+			</tr>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output or
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>length</td>
+				<td>The length of the string of points in units of out_srid</td>
+			</tr>
+			<tr>
+				<td>area</td>
+				<td>The area of the string of points in units of out_srid</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;rows total-rows="1"&gt;
+	&lt;row&gt;
+	&lt;column name="length"&gt;1546.1343&lt;/column&gt;
+	&lt;column name="area"&gt;76453.67&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"1","rows":[{
+	"row":{"length":"1546.1343","area":"76453.67"}}]}
+	</pre>
+</div>

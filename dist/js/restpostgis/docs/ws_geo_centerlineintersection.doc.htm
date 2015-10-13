@@ -1,0 +1,82 @@
+<div id="doctitle">
+	<h2>Centerline Intersection</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v1/ws_geo_centerlineintersection.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Returns the intersection(s) of two streets if one exists.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>streetname1</td>
+				<td>First street name to search for.</td>
+			</tr>
+			<tr>
+				<td>streetname2</td>
+				<td>Second street name to search for.</td>
+			</tr>
+			<tr>
+				<td>srid</td>
+				<td>The SRID (projection) to return the intersection points in. 2264 is NC State Plane NAD83 Feet; 
+				4326 is WGS84.</td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output or
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>xcoord</td>
+				<td>X coordinate of intersection.</td>
+			</tr>
+			<tr>
+				<td>ycoord</td>
+				<td>Y coordinate of intersection.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;rows total-rows="1"&gt;
+	&lt;row&gt;
+	&lt;column name="xcoord"&gt;-80.7665698923352&lt;/column&gt;
+	&lt;column name="ycoord"&gt;35.2477931997664&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"1","rows":[
+	{"row":{"xcoord":"-80.7665698923352","ycoord":"35.2477931997664"}}]}
+	</pre>
+
+</div>

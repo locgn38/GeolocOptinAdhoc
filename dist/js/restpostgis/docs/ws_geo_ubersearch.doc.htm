@@ -1,0 +1,85 @@
+<div id="doctitle">
+	<h2>Ubersearch</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v1/ws_geo_ubersearch.php?query=5501 r&searchtypes=0,1,2,5">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>An autocomplete and search service involving a large amount of data and auto-quing between the search types. Output is in JSON. See Geoportal for an example of how this can work on a web site.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>query</td>
+				<td>The query string. Must be at least 3 characters. Searches for intersections are detected by an ampersand. Example: query=ruth & dolphin. Note the ampersand in the query string will have to be URL encoded.</td>
+			</tr>
+			<tr>
+				<td>searchtypes</td>
+				<td>A comma delimited list of data sets to search. Example: searchtype=0,1,2,5. 
+				Here's the idex:
+					<ul>
+						<li>0: Address (mat)</li>
+						<li>1: Library (mat)</li>
+						<li>2: School (mat)</li>
+						<li>3: Park (mat)</li>
+						<li>4: GeoName (mat)</li>
+						<li>5: Street name (mat)</li>
+						<li>6: CATS Light Rail (mat)</li>
+						<li>7: CATS Park and Ride (mat)</li>
+						<li>8: Intersection (mat)</li>
+					</ul>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>query</td>
+				<td>The query string sent to the service.</td>
+			</tr>
+			<tr>
+				<td>suggestions</td>
+				<td>Array of suggestions. Format is [match-type]:[match].</td>
+			</tr>
+			<tr>
+				<td>data</td>
+				<td>Data associated with each suggestion. Format is [search type]:[unique id field]:[unique id].</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<pre>
+	{ query: '5501 r', 
+	suggestions:['ADDRESS: 5501 RACINE AVE CHARLOTTE NC 28269',
+	'ADDRESS: 5501 RADFORD AVE CHARLOTTE NC 28217',
+	'ADDRESS: 5501 ROBINHOOD RD CHARLOTTE NC 28211',
+	'ADDRESS: 5501 ROCKWOOD RD CHARLOTTE NC 28216',
+	'ADDRESS: 5501 RUTH DR CHARLOTTE NC 28215'], 
+	data:['0:objectid:150772','0:objectid:150773',
+	'0:objectid:150774','0:objectid:150775','0:objectid:150776']}
+	</pre>
+	
+	
+</div>

@@ -1,0 +1,95 @@
+<div id="doctitle">
+	<h2>Metadata Search and Retrieval</h2>
+</div>
+
+<div id="doclocation">
+	<a href="http://maps.co.mecklenburg.nc.us/metadata/services/ws_metadata_search.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Searches for and retrieves metadata.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>search</td>
+				<td>Either the search term or the explicit name of the metadata file to retrieve.</td>
+			</tr>
+			<tr>
+				<td>field</td>
+				<td>The metadata field in which to search for the search parameter. If left blank, a full text search will take place. This value should be left black if retrieving a specific metadata file.</td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format of the return. For search, format values are "xml" or "json". To retrieve metadata, format options are "raw" (FGDC XML), "classic" (FGDC Classic format), 
+				"faq" (FGDC FAQ format), or "summary" (brief metadata summary).</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<p>Service output for metadata retrieval is dependent upon the metadata layer. Service
+	output for metadata search is as follows:</p>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>title</td>
+				<td>The metadata title field content.</td>
+			</tr>
+			<tr>
+				<td>abstract</td>
+				<td>The metadata abstract field content.</td>
+			</tr>
+			<tr>
+				<td>file_name</td>
+				<td>The metadata file name. Can be used to retrieve specific metadata.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;rows total-rows="2"&gt;
+		&lt;row&gt;
+			&lt;column name="title"&gt;Druid Hills Neighborhood - Parcels&lt;/column&gt;
+			&lt;column name="abstract"&gt;
+			The dataset contains polygons representing parcels in the Druid Hills neighborhood.
+			&lt;/column&gt;
+			&lt;column name="file_name"&gt;Druid_Hills_Neighborhood_-_Parcels.xml&lt;/column&gt;
+		&lt;/row&gt;
+		&lt;row&gt;
+			&lt;column name="title"&gt;Historical Parcels&lt;/column&gt;
+			&lt;column name="abstract"&gt;
+			The dataset contains polygons that correspond to parcels carrying a historical
+			designation.
+			&lt;/column&gt;
+			&lt;column name="file_name"&gt;Historical_Parcels.xml&lt;/column&gt;
+		&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"2","rows":[
+	{"row":{"title":"Druid Hills Neighborhood - Parcels", "abstract":"The+dataset+contains....",
+	"file_name":"Druid_Hills_Neighborhood_-_Parcels.xml"}},
+	{"row":{"title":"Historical Parcels", "abstract":"The+dataset+contains....", "file_name":"Historical_Parcels.xml"}}]}
+	</pre>
+</div>

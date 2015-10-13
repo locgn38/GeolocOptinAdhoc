@@ -1,0 +1,120 @@
+<div id="doctitle">
+	<h2>CAMA Ownership</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v2/php-cgi/ws_cama_ownership.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>The CAMA Ownership web service returns detailed parcel ownership information.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>pid</td>
+				<td>Eight character parcel ID. Example: 12312312.</td>
+			</tr>
+			<tr>
+				<td>pidtype</td>
+				<td>Type of pid. Value is either 'tax' or 'common'. 'common' refers 
+					to a common pid, such as for a condo common area. In most cases
+					you'll probably use 'tax'.</td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output or
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>parcel_id</td>
+				<td>Tax parcel ID.</td>
+			</tr>
+			<tr>
+				<td>common_parcel_id</td>
+				<td>Tax parcel common ID, for things like condo common areas.</td>
+			</tr>
+			<tr>
+				<td>last_name</td>
+				<td>Owner last name.</td>
+			</tr>
+			<tr>
+				<td>first_name</td>
+				<td>Owner first name.</td>
+			</tr>
+			<tr>
+				<td>owner_type</td>
+				<td>The type of owner as specified in the CAMA data.</td>
+			</tr>
+			<tr>
+				<td>address_1</td>
+				<td>Owner address first line.</td>
+			</tr>
+			<tr>
+				<td>address_2</td>
+				<td>Owner address second line.</td>
+			</tr>
+			<tr>
+				<td>city</td>
+				<td>Owner address city.</td>
+			</tr>
+			<tr>
+				<td>state</td>
+				<td>Owner address state.</td>
+			</tr>
+			<tr>
+				<td>zipcode</td>
+				<td>Owner address zipcode.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;rows total-rows="1"&gt;
+	&lt;row&gt;
+	&lt;column name="parcel_id"&gt;11111111&lt;/column&gt;
+	&lt;column name="common_parcel_id"&gt;11111111&lt;/column&gt;
+	&lt;column name="last_name"&gt;JOHNSON&lt;/column&gt;
+	&lt;column name="first_name"&gt;BOB O&lt;/column&gt;
+	&lt;column name="owner_type"/&gt;
+	&lt;column name="address_1"&gt;7716 DENBUR DR&lt;/column&gt;
+	&lt;column name="address_2"&gt; &lt;/column&gt;
+	&lt;column name="city"&gt;CHARLOTTE&lt;/column&gt;
+	&lt;column name="state"&gt;NC&lt;/column&gt;
+	&lt;column name="zipcode"&gt;28215&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"1","rows":[{"row":{"parcel_id":"11111111","common_parcel_id":"11111111",
+	"last_name":"JOHNSON","first_name":"BOB O","owner_type":"",
+	"address_1":"7716 DENBUR DR","address_2":" ","city":"CHARLOTTE",
+	"state":"NC","zipcode":"28215"}}]}
+	</pre>
+</div>

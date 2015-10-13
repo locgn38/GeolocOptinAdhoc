@@ -1,0 +1,407 @@
+<h2>Instructions, Tips and Tricks</h2>
+
+<p>Here is a hodgepodge of instructions, tips, and tricks for working with 
+GIS REST web services.</p>
+
+<h3>Service Output</h3>
+<p>Service output is standardized for all REST web services with the exception 
+of those originating from other providers, such as the Google Geocode. Format for 
+all REST services comes in two or three flavors set by the format paramater: XML, KML, or JSON.  
+XML is a standard data exchange format and is most appropriate for use in server 
+or application side coding, where XML parsers frequently exist. JSON is most 
+appropriate for consumption by Javascript. Each return is essentially a XML, KML or
+JSON representation of a record set.</p>
+
+<p>XML output looks like this:</p>
+	<pre>
+	&lt;rows total-rows="2"&gt;
+	&lt;row&gt;
+	&lt;column name="column_1"&gt;Column Value&lt;/column&gt;
+	&lt;column name="column_2"&gt;Column Value&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="column_1"&gt;Column Value&lt;/column&gt;
+	&lt;column name="column_2"&gt;Column Value&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+
+<p>The XML container tag is "rows". The "rows" tag contains child "row" tags, one 
+for each record returned. Note the "rows" tag has a "total-rows" property, which 
+indicates the number of rows returned by the query. Each "row" tag has any number
+of child "column" tags. The "column" tag represents a field or column in the return
+record set, with the "name" property being the name of the field or column. The value 
+of the "column" tag is the value of that column for that record.</p>
+
+<p>If your query returns no records, the XML response is this:</p>
+	<pre>
+	&lt;rows total-rows="0"/&gt;
+	</pre>
+
+<p>JSON output looks like this:</p>
+	<pre>
+	{"total_rows":"1","rows":[
+	{"row":{"column_1":"column value", "column_2":"column value"}},
+	{"row":{"column_1":"column value", "column_2":"column value"}}
+	]}
+	</pre>
+	
+<p>Essentially, there's a "total_rows" value and then a parent "rows" element 
+containing a series of "row" elements, one for 
+each record returned. Each "row" element contains a comma delimited column:value pairs. 
+This format is easily digested by a Javascript eval().</p>
+
+<p>If your query returns no records, the JSON response is this:</p>
+	<pre>
+	{"total_rows":"0","rows":"row"}
+	</pre>
+	
+<p>KML output looks like this:</p>
+	<pre>
+    &lt;?xml version="1.0" encoding="utf-8"?&gt;
+    &lt;kml xmlns="http://www.opengis.net/kml/2.2"&gt;
+      &lt;Document&gt;
+        &lt;Placemark&gt;
+          &lt;name&gt;Monroe Middle School&lt;/name&gt;
+          &lt;Point&gt;
+            &lt;coordinates&gt;-80.538976082676783,34.973003351596738&lt;/coordinates&gt;
+          &lt;/Point&gt;
+          &lt;ExtendedData&gt;
+            &lt;Data name="name"&gt;
+              &lt;value&gt;Monroe Middle School&lt;/value&gt;
+            &lt;/Data&gt;
+          &lt;/ExtendedData&gt;
+        &lt;/Placemark&gt;
+      &lt;/Document&gt;
+    &lt;/kml&gt;
+	</pre>
+
+	<p>If your query returns no records, the KML response is this:</p>
+	<pre>
+    &lt;?xml version="1.0" encoding="utf-8"?&gt;
+    &lt;kml xmlns="http://www.opengis.net/kml/2.2"&gt;
+      &lt;Document /&gt;
+    &lt;/kml&gt;
+	</pre>
+	
+	<p>There are 2 things to keep in mind when requesting data in KML format</p>
+	<ol>
+		<li>A field with valid KML named "kml" is required for output. This is as simple as adding "st_askml(the_geom)+as+kml" in your "fields" URL parameter.</li>
+		<li>The first field returned in your record set will show up in the "name" tag of your KML</li>
+	</ol>
+	
+	<p>KML output is only available for the following services:</p>
+	<ul>
+		<li>Attribute Query</li>
+		<li>Buffer Feature</li>
+		<li>Buffer Point</li>
+		<li>Feature Overlay</li>
+		<li>Point Overlay</li>
+	</ul>
+
+<p>If your query creates an error, you will recieve an XML error message that looks 
+like this:</p>
+	<pre>
+	&lt;error_handler&gt;
+  	&lt;error&gt;
+	&lt;error_message&gt;Error message.&lt;/error_message&gt;
+  	&lt;/error&gt;
+	&lt;/error_handler&gt;
+	</pre>
+
+<p>As the REST return is text, you can perform a simple text string search for 
+"&lt;error_handler&gt;" in the result to check and see if you've got problems. The 
+information is purposely limited to keep from passing sensitive applicaiton and 
+database information to users. If you need to do some serious debugging, let us know 
+and we can help.</p> 
+
+<h3>Customizing Fields and Parameters</h3>
+<p>Many of our GEO REST services off you the ability to set custom parameters and fields 
+for your query. We do this because (a) we don't know what you want, and (b) we're not going
+to write web services to handle every request. By keeping the services generic we maximize 
+code reuse and interoperability.</p>
+
+<p>The parameters argument lets you set additional parameters for the query as you would 
+in a SQL where request. For example, suppose you are doing a point buffer and you want 
+to buffer your point by 500 feet and return the voting precincts in that buffer. But suppose 
+you also want to only return voting precincts in the buffer where the precinct (precno) 
+number is greater than 100. Simply add that as a parameter (URL encoding left off here 
+for readability):</p>
+	<pre>
+	parameters = precno &gt; 100
+	</pre>
+
+<p>If you don't need additional parameters, simply leave the parameters argument empty.</p>
+
+<p>The fields argument allows you to specify what fields you would like returned. You 
+can get a list of fields for a geotable with the List Fields GEO service.</p>
+
+<p>You can also use the fields parameter to change the field name used in your return. 
+For example (URL encoding left off here for readability):</p>
+	<pre>
+	fields = precno as precinct_number, cc as county_commissioner_district
+	</pre>
+
+<p>One of the really cool things you can do with the fields argument is to return geometry. 
+You can return geometry as KML, GML, WKT, or SVG. Here are some exampes: </p>
+
+	<pre>
+	KML
+	fields = askml(the_geom) as the_geom
+	
+	GML
+	fields = asgml(the_geom) as the_geom
+	
+	WKT
+	fields = asewkt(the_geom) as the_geom
+	
+	SVG
+	assvg(the_geom) as the_geom</pre>
+
+
+<p>There are a number of things to note here. First the_geom is the name of the geometry 
+column in all of our geotables, hence the (the_geom) argument. The second thing to note is 
+the return value is in the projection of the geotable (which you can find out with the List 
+Layers web service). If you want it in a different projection, you would need to use the 
+transform option, as seen here: </p>
+
+	<pre>
+	KML projected to SRID 4326
+	fields = askml(transform(the_geom, 4326)) as the_geom</pre>
+
+<p>4326 is the SRID we want the data returned in. So, in this example, we want the geometry 
+converted to 4326 (decimal degrees) and then returned as KML.</p>
+
+<h3>Consuming with PHP</h3>
+<p>First let's take a look at consuming a web service with PHP. Here's an example of 
+a feature overlay:</p>
+	<pre>
+	# Set the web service parameters.
+	$params = array( 
+	'fields'  =&gt; 't.precno, t.cc',
+	'from_geotable'  =&gt; 'tax_parcels',
+	'to_geotable'  =&gt; 'voting_precincts',
+	'parameters'  =&gt; "f.pid = '11111111'",
+	'format' =&gt; 'xml'
+	);
+	
+	# Set the base URL of the web service.
+	$base = 'http://theurl/ws_geo_featureoverlay.php';
+	
+	# URL encode the parameters.
+	$query_string = "";
+	foreach ($params as $key =&gt; $value) { 
+    	$query_string .= "$key=" . urlencode($value) . "&amp;";
+	}
+	$url = "$base?$query_string";
+	
+	# Get the return results.
+	$result = file_get_contents($url);</pre>
+	
+<p>That code gets the return results, in this case in XML, and assigns them to the 
+$results variable. Note that the file_get_contents is only available in PHP 5.x or 
+higher. PHP 4 users will have to use the CURL library.</p>
+
+<p>Now that we've received web service output, let's process it.</p>
+	<pre>
+	# Check for error
+	if (stripos($result, "error_handler") != false) {
+		echo "Cap'n, we have an error!";
+	}
+	# Otherwise process result
+	else {
+		$xml = new SimpleXMLElement($result);
+		# Check number of returned records
+		if ($xml-&gt;rows['total-rows'] = 0) {
+			echo "No records found!";
+		}
+		else {
+			echo "Total Rows: " . $xml['total-rows'] . "&lt;br /&gt;";
+			foreach ($xml-&gt;row as $row) {
+				echo "Row &lt;br /&gt;";
+				foreach ($row-&gt;column as $column) {
+					echo $column['name'] . ": ";
+					echo $column . "&lt;br /&gt;";
+				}
+			}
+		}
+	}</pre>
+
+<p>First, we checked for an error message. If no message was found, we load the return
+result into a SimpleXMLElement. We then check to see if any records were returned. If 
+they were, we loop through each row and then each column in each row and echo the result. 
+The result looks like this:</p>
+
+	<pre>
+	Total Rows: 1
+	Row
+	precno: 201
+	cc: 3</pre>
+	
+<p>For some handy tutorials on XML processing with PHP, check out 
+<a href="http://www.ibm.com/developerworks/library/x-xmlphp1.html">this article by IBM</a>.
+</p>
+	
+	
+<h3>Consuming with .NET</h3>
+<p>With .NET, connecting to a REST service is about the same amount of work as connecting 
+to a SOAP service. Instead of creating a web proxy, we'll just use a function to build 
+a url to the web service.</p>
+
+	<pre>
+ 	Private Function wsListLayers(ByVal geotable As String, ByVal format As String) As String
+        Dim strURL As String = "http://theurl/ws_geo_listfields.php"
+
+        strURL &amp;= "?geotable=" &amp; Server.UrlEncode(geotable)
+        strURL &amp;= "&amp;format=" &amp; Server.UrlEncode(format)
+
+        Return strURL
+    End Function</pre>
+	
+<p>Here are callout the List Fields web service to get a list of a geotable. Now we can 
+call the function and process the results.</p>
+
+	<pre>
+	Dim strURL As String
+    Dim xmlDoc As New System.Xml.XmlDocument()
+    Dim mylist As System.Xml.XmlNodeList
+    Dim row As System.Xml.XmlNode
+    Dim node As System.Xml.XmlNode
+    Dim i As Integer
+
+
+    'Load the service as a XML document
+    strURL = wsListLayers("polling_locations", "xml")
+    xmlDoc.Load(strURL)
+
+    'Process the return
+    If xmlDoc.GetElementsByTagName("error_handler").Count &gt; 0 Then
+        Response.Write("Dude we bombed.")
+    ElseIf xmlDoc.GetElementsByTagName("row").Count = 0 Then
+        Response.Write("Dude we gots no records.")
+    Else
+        mylist = xmlDoc.GetElementsByTagName("row")
+        For Each row In mylist
+            Response.Write("Row " &amp; i &amp; "&lt;br /&gt;")
+            For Each node In row
+                Response.Write(node.Attributes.Item(0).Value &amp; ": " &amp; node.InnerText &amp; "&lt;br /&gt;")
+            Next
+            i = i + 1
+        Next
+    End If</pre>
+
+<p>The output will look like this: </p>
+	<pre>
+	Row 0
+	field_name: gid
+	field_type: int4
+	Row 1
+	field_name: objectid
+	field_type: int4
+	Row 2
+	field_name: precno
+	field_type: int4
+	Row 3
+	field_name: name
+	field_type: varchar
+	Row 4
+	....</pre>
+	
+
+<h3>Consuming with JavaScript</h3>
+<p>JSON, or JavaScript Object Notation, is a lightweight, human-readable interchange 
+format. JSON has a number of advantages over XML when consumed with JavaScript:</p>
+	<ul>
+		<li>It's extremely easy to create and use.</li>
+		<li>It's fast. Its smaller size makes for quicker transport and process.</li>
+		<li>It's a native JavaScript data format, making processing with JavaScript
+			extremely easy.</li> 
+	</ul>
+
+<p>While you can process XML output with JavaScript via the DOM, JSON processing with 
+JavaScript is much easier. Let's look at a consuming a web service. Note that we're 
+taking advantage of the excellent jQuery JavaScript library.</p>
+
+	<pre>
+	&lt;script src="http://code.jquery.com/jquery-latest.js"&gt;&lt;/script&gt;
+	&lt;script&gt;
+	
+	$(document).ready(function(){
+    	$.getJSON("http://theurl/ws_geo_listfields.php?geotable=voting_precincts&amp;format=json", 
+    	function(data){
+  		$.each(data.rows, function(i, item){
+    	$('#results').append(item.row.field_name + ': ' + item.row.field_type + '&lt;br /&gt;');
+  			});
+		});
+  	});
+  	&lt;/script&gt;
+  	&lt;div id="results"&gt;Fields:&lt;br /&gt;&lt;/div&gt;</pre>
+
+<p>Here's we're calling the List Fields GEO web service when the document is ready to 
+process an AJAX request. If the data is successfully loaded, for each row in rows it 
+appends the field name and type to a DIV tag with an ID of 'results'.</p>
+
+<p>The output will look like this:</p>
+	<pre>
+	Fields:
+	gid: int4
+	objectid: int4
+	precno: int4
+	cc: int4
+	school: int4
+	jud: varchar
+	zone: int4
+	area: numeric
+	len: numeric
+	the_geom: geometry</pre>
+
+<p>You can also call JSON with an optional callback parameter to be returned JSONP. This lets
+you get around the cross site scripting security in most browsers. For example, if you put this 
+argument at the end of your REST URL:</p>
+
+<pre>&callback=myfunction</pre>
+
+<p>Then the return will look like this:</p>
+
+<pre>
+	myfunction({"total_rows":"1","rows":[
+	{"row":{"column_1":"column value", "column_2":"column value"}},
+	{"row":{"column_1":"column value", "column_2":"column value"}}
+	]})
+	</pre>
+	
+<p>Then all you'll need to do is create a myfunction function on your page to handle the return:</p>
+
+<pre>function myfunction(data) {....}</pre>
+	
+<p>For more information on JSON and using it with other languages, check out 
+<a href="http://www.json.org/" target="_blank">json.org</a>.</p>
+
+
+<h3>Consuming with VB6</h3>
+<p>The easiest way to consume REST services from VB6 is to use the Internet Transfer Control 
+(IE Control).</p>
+<pre>
+'Assuming you have built your REST URL and called it restURL and your IE control is called iNet
+Dim getXMLDoc as String
+
+' cancel any pending operation and set protocol to HTTP
+iNet.Cancel
+iNet.Protocol = icHTTP
+' get the XML
+getXMLDoc = iNet.OpenURL(restURL)
+</pre>
+<p>getXMLDoc now has the service XML output. To parse the XML, they just need to use the XML 
+DOM for working with XML in VB (Project > References, check "Microsoft XML, v4.0").</p>
+
+
+<h3>General Tips</h3>
+<ul>
+	<li>The URL to the web serice is in the Service URL link at the top of each 
+		web service's documentation.</li>
+	<li>Most Mecklenburg County GIS data is in SRID 2264, or NC State Plane NAD83 
+		feet. The most popular thing to convert it to would be 4326, decimal degrees.</li>
+	<li>If you use Firefox and Firebug for AJAX debugging, this bit of code for jQuery 
+		will write AJAX error messages to the console: $(document).ajaxError(function(){
+    if (window.console && window.console.error) { console.error(arguments); } });</li>
+</ul>

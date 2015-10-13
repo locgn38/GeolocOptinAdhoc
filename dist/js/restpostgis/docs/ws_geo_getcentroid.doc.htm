@@ -1,0 +1,86 @@
+<div id="doctitle">
+	<h2>Get Centroid</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v1/ws_geo_getcentroid.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Returns the centroid(s) of the geometry of feature(s) from a spatial layer.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>geotable</td>
+				<td>The table containing the feature(s) to calculate a centroid from.</td>
+			</tr>
+			<tr>
+				<td>parameters</td>
+				<td>SQL where parameters.</td>
+			</tr>
+			<tr>
+				<td>srid</td>
+				<td>SRID of the centroid to be returned.</td>
+			</tr>
+			<tr>
+				<td>forceonsurface</td>
+				<td>Value is either 'true' or 'false' (all lower case). A value of 'true' will force the
+				    returned centroid x and y to be inside of the subject geometry. A value of false will
+					return the absolute centroid, which may be outside of the subject geometry.</td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output or
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>x</td>
+				<td>X coordinate of the centroid.</td>
+			</tr>
+			<tr>
+				<td>y</td>
+				<td>Y coordinate of the centroid.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;rows total-rows="1"&gt;
+	&lt;row&gt;
+	&lt;column name="x_coordinate"&gt;-80.8828805447448&lt;/column&gt;
+	&lt;column name="y_coordinate"&gt;35.1079138553221&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"1","rows":[{"row":{"x_coordinate":"-80.8828805447448",
+	"y_coordinate":"35.1079138553221"}}]}
+	</pre>
+</div>

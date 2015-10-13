@@ -1,0 +1,94 @@
+<div id="doctitle">
+	<h2>Geonames Name Search</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v1/ws_geonames_namesearch.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Performs a fuzzy name search an entry in the geonames layer, which comes from GeoNames.org. Useful for
+		auto complete boxes.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>name</td>
+				<td>Geoname to search for. Minimum of 2 characters.</td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output, 
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>geonameid</td>
+				<td>Geonames ID.</td>
+			</tr>
+			<tr>
+				<td>name</td>
+				<td>Geoname.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	<rows total-rows="5">
+	&lt;row&gt;
+	&lt;column name="geonameid"&gt;150772&lt;/column&gt;
+	&lt;column name="name"&gt;Hope Farm&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="geonameid"&gt;150773&lt;/column&gt;
+	&lt;column name="name"&gt;Hope Park&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="geonameid"&gt;150774&lt;/column&gt;
+	&lt;column name="name"&gt;5501 ROBINHOOD RD, CHARLOTTE NC 28211&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="geonameid"&gt;150775&lt;/column&gt;
+	&lt;column name="name"&gt;5501 ROCKWOOD RD, CHARLOTTE NC 28216&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="geonameid"&gt;150776&lt;/column&gt;
+	&lt;column name="name"&gt;5501 RUTH DR, CHARLOTTE NC 28215&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"5","rows":[
+	{"row":{"geonameid":"150772","name":"Hope Farm"}},
+	{"row":{"geonameid":"150773","name":"Hope Park"}},
+	{"row":{"geonameid":"150774","name":"Hopewell"}},
+	{"row":{"geonameid":"150775","name":"Hopewell AME Zion Cemetery"}},
+	{"row":{"geonameid":"150776","name":"Hopewell AME Zion Church"}}]}
+	</pre>
+	
+</div>

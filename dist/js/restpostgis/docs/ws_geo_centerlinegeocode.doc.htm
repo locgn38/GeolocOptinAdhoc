@@ -1,0 +1,144 @@
+<div id="doctitle">
+	<h2>Centerline Geocode</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v1/ws_geo_centerlinegeocode.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Geocode an address using the street centerline.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>housenum</td>
+				<td>House number.</td>
+			</tr>
+			<tr>
+				<td>prefix</td>
+				<td>Address prefix. Example: 'N'.</td>
+			</tr>
+			<tr>
+				<td>streetname</td>
+				<td>Street name.</td>
+			</tr>
+			<tr>
+				<td>roadtype</td>
+				<td>Road type. Example: 'RD'.</td>
+			</tr>
+			<tr>
+				<td>suffix</td>
+				<td>Street suffix.</td>
+			</tr>
+			<tr>
+				<td>zipcode</td>
+				<td>Address zipcode.</td>
+			</tr>
+			<tr>
+				<td>city</td>
+				<td>Address city.</td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output or
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>x_coordinate</td>
+				<td>X coordinate.</td>
+			</tr>
+			<tr>
+				<td>y_coordinate</td>
+				<td>Y coordinate.</td>
+			</tr>
+			<tr>
+				<td>ll_add</td>
+				<td>Lower left house number of street segment.</td>
+			</tr>
+			<tr>
+				<td>ul_add</td>
+				<td>Upper left house number of street segment.</td>
+			</tr>
+			<tr>
+				<td>lr_add</td>
+				<td>Lower right house number of street segment.</td>
+			</tr>
+			<tr>
+				<td>ur_add</td>
+				<td>Upper right house number of street segment.</td>
+			</tr>
+			<tr>
+				<td>prefix</td>
+				<td>Street prefix.</td>
+			</tr>
+			<tr>
+				<td>road_type</td>
+				<td>Road type.</td>
+			</tr>
+			<tr>
+				<td>suffix</td>
+				<td>Street suffix.</td>
+			</tr>
+			<tr>
+				<td>city</td>
+				<td>City.</td>
+			</tr>
+			<tr>
+				<td>zipcode</td>
+				<td>Zipcode.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;rows total-rows="1"&gt;
+	&lt;row&gt;
+	&lt;column name="x_coordinate"&gt;1474674.08&lt;/column&gt;
+	&lt;column name="y_coordinate"&gt;550010.420000002&lt;/column&gt;
+	&lt;column name="ll_add"&gt;5501&lt;/column&gt;
+	&lt;column name="ul_add"&gt;5599&lt;/column&gt;
+	&lt;column name="lr_add"&gt;5500&lt;/column&gt;
+	&lt;column name="ur_add"&gt;5598&lt;/column&gt;
+	&lt;column name="prefix"/&gt;
+	&lt;column name="street_name"&gt;RUTH&lt;/column&gt;
+	&lt;column name="road_type"&gt;DR&lt;/column&gt;
+	&lt;column name="suffix"/&gt;
+	&lt;column name="city"&gt;CHAR&lt;/column&gt;
+	&lt;column name="zipcode"&gt;28215&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"1","rows":[{"row":{"x_coordinate":"1474674.08",
+	"y_coordinate":"550010.420000002","ll_add":"5501","ul_add":"5599",
+	"lr_add":"5500","ur_add":"5598","prefix":"",
+	"street_name":"RUTH","road_type":"DR","suffix":"","city":"CHAR","zipcode":"28215"}}]}
+	</pre>
+</div>

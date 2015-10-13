@@ -1,0 +1,103 @@
+<div id="doctitle">
+	<h2>Full Address Search</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v1/ws_mat_fulladdress.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Performs a fuzzy search for the full address, including city and zip, in the master address table. Useful for
+		auto complete boxes.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>address</td>
+				<td>Address to search for. Minimum of 3 characters.</td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output, 
+					'json' for JSON output, and 'text' for plain text output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>objectid</td>
+				<td>MAT object id.</td>
+			</tr>
+			<tr>
+				<td>address</td>
+				<td>MAT address.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	<rows total-rows="5">
+	&lt;row&gt;
+	&lt;column name="objectid"&gt;150772&lt;/column&gt;
+	&lt;column name="address"&gt;5501 RACINE AVE, CHARLOTTE NC 28269&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="objectid"&gt;150773&lt;/column&gt;
+	&lt;column name="address"&gt;5501 RADFORD AVE, CHARLOTTE NC 28217&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="objectid"&gt;150774&lt;/column&gt;
+	&lt;column name="address"&gt;5501 ROBINHOOD RD, CHARLOTTE NC 28211&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="objectid"&gt;150775&lt;/column&gt;
+	&lt;column name="address"&gt;5501 ROCKWOOD RD, CHARLOTTE NC 28216&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="objectid"&gt;150776&lt;/column&gt;
+	&lt;column name="address"&gt;5501 RUTH DR, CHARLOTTE NC 28215&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"5","rows":[
+	{"row":{"objectid":"150772","address":"5501 RACINE AVE, CHARLOTTE NC 28269"}},
+	{"row":{"objectid":"150773","address":"5501 RADFORD AVE, CHARLOTTE NC 28217"}},
+	{"row":{"objectid":"150774","address":"5501 ROBINHOOD RD, CHARLOTTE NC 28211"}},
+	{"row":{"objectid":"150775","address":"5501 ROCKWOOD RD, CHARLOTTE NC 28216"}},
+	{"row":{"objectid":"150776","address":"5501 RUTH DR, CHARLOTTE NC 28215"}}]}
+	</pre>
+	
+	<p> Sample Text Output</p>
+	<pre>
+	5501 RACINE AVE, CHARLOTTE NC 28269|150772
+	5501 RADFORD AVE, CHARLOTTE NC 28217|150773
+	5501 ROBINHOOD RD, CHARLOTTE NC 28211|150774
+	5501 ROCKWOOD RD, CHARLOTTE NC 28216|150775
+	5501 RUTH DR, CHARLOTTE NC 28215|150776
+
+	</pre>
+</div>

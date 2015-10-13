@@ -1,0 +1,145 @@
+<div id="doctitle">
+	<h2>Identify</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v2/ws_geo_identify.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Identify features from multiple layers. This is a good work-around for when you are trying to identify
+	features from many layers using consecutive Buffer Point requests.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>x</td>
+				<td>The X coordinate of the point to buffer.</td>
+			</tr>
+			<tr>
+				<td>y</td>
+				<td>The Y coordinate of the point to buffer.</td>
+			</tr>
+			<tr>
+				<td>srid</td>
+				<td>The SRID of the input point. 2264 is NC State Plane NAD83 (feet), 
+					4326 is decimal degrees.</td>
+			</tr>
+			<tr>
+				<td>geotables</td>
+				<td>Comma separated PostGIS Layers (address_points,roads,subdivisions)</td>
+			</tr>
+			<tr>
+				<td>fields</td>
+				<td>Comma separated fields to be returned separated by layer with "|" (gid,display|gid+road_name|gid,name)</td>
+			</tr>
+			<tr>
+				<td>distance</td>
+				<td>The number of units to be buffered. The units are the units of the
+					geotable SRID, and for Mecklenburg County data will be feet.</td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output or
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<p>Service output is entirely dependant upon the fields parameter.</p>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;results&gt;
+	  &lt;result geotable="address_points"&gt;
+	    &lt;rows total-rows="2"&gt;
+	      &lt;row&gt;
+	        &lt;column name="gid"&gt;10542&lt;/column&gt;
+	        &lt;column name="full_address"&gt;604 Summerston Ln&lt;/column&gt;
+	      &lt;/row&gt;
+	      &lt;row&gt;
+	        &lt;column name="gid"&gt;10541&lt;/column&gt;
+	        &lt;column name="full_address"&gt;608 Summerston Ln&lt;/column&gt;
+	      &lt;/row&gt;
+	    &lt;/rows&gt;
+	  &lt;/result&gt;
+	  &lt;result geotable="subdivisions"&gt;
+	    &lt;rows total-rows="1"&gt;
+	      &lt;row&gt;
+	        &lt;column name="gid"&gt;1&lt;/column&gt;
+	        &lt;column name="name"&gt;Brandon Oaks&lt;/column&gt;
+	      &lt;/row&gt;
+	    &lt;/rows&gt;
+	  &lt;/result&gt;
+	  &lt;result geotable="roads"&gt;
+	    &lt;rows total-rows="1"&gt;
+	      &lt;row&gt;
+	        &lt;column name="gid"&gt;1157&lt;/column&gt;
+	        &lt;column name="display"&gt;Summerston Ln&lt;/column&gt;
+	      &lt;/row&gt;
+	    &lt;/rows&gt;
+	  &lt;/result&gt;
+	&lt;/results&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+  {
+    "results":[
+      {
+        "geotable":"address_points",
+        "total_rows":"2",
+        "rows":[
+          {
+            "row":{
+              "gid":"10542",
+              "full_address":"604 Summerston Ln"
+            }
+          },{
+            "row":{
+              "gid":"10541",
+              "full_address":"608 Summerston Ln"
+            }
+          }
+        ]
+      },{
+        "geotable":"subdivisions",
+        "total_rows":"1",
+        "rows":[
+          {
+            "row":{
+              "gid":"1",
+              "name":"Brandon Oaks"
+            }
+          }
+        ]
+      },{
+        "geotable":"roads",
+        "total_rows":"1",
+        "rows":[
+          {
+            "row":{
+              "gid":"1157",
+              "display":"Summerston Ln"
+            }
+          }
+        ]
+      }
+    ]
+  }
+	</pre>
+</div>

@@ -1,0 +1,93 @@
+<div id="doctitle">
+	<h2>List Layers</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v1/ws_geo_listlayers.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>List the geo layers in PostGIS.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output or
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>layer_name</td>
+				<td>The name of the geotable.</td>
+			</tr>
+			<tr>
+				<td>srid</td>
+				<td>The SRID of the layer.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;rows total-rows="6"&gt;
+	&lt;row&gt;
+	&lt;column name="layer_name"&gt;air_pollution_facilities&lt;/column&gt;
+	&lt;column name="srid"&gt;2264&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="layer_name"&gt;air_quality_sites&lt;/column&gt;
+	&lt;column name="srid"&gt;2264&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="layer_name"&gt;buildings&lt;/column&gt;
+	&lt;column name="srid"&gt;2264&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="layer_name"&gt;catawba_river&lt;/column&gt;
+	&lt;column name="srid"&gt;2264&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="layer_name"&gt;cats_bus_stops&lt;/column&gt;
+	&lt;column name="srid"&gt;2264&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="layer_name"&gt;census_blocks&lt;/column&gt;
+	&lt;column name="srid"&gt;2264&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"6","rows":[{
+	"row":{"layer_name":"air_pollution_facilities","srid":"2264"}},
+	{"row":{"layer_name":"air_quality_sites","srid":"2264"}},
+	{"row":{"layer_name":"buildings","srid":"2264"}},
+	{"row":{"layer_name":"catawba_river","srid":"2264"}},
+	{"row":{"layer_name":"cats_bus_stops","srid":"2264"}},
+	{"row":{"layer_name":"census_blocks","srid":"2264"}}]}
+	</pre>
+</div>

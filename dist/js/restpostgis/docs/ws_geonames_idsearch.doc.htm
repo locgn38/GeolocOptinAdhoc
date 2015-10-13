@@ -1,0 +1,104 @@
+<div id="doctitle">
+	<h2>Geonames ID Search</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v1/ws_geonames_idsearch.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Retrieves information from the geonames table based on ID. From GeoNames.org.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>id</td>
+				<td>Geoname ID to search for.</td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output, 
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>geonameid</td>
+				<td>Geonames ID.</td>
+			</tr>
+			<tr>
+				<td>name</td>
+				<td>Geoname.</td>
+			</tr>
+			<tr>
+				<td>latitude</td>
+				<td>Latitude in decimal degrees.</td>
+			</tr>
+			<tr>
+				<td>longitude</td>
+				<td>Longitude in decimal degrees.</td>
+			</tr>
+			<tr>
+				<td>elevation</td>
+				<td>In meters, integer.</td>
+			</tr>
+			<tr>
+				<td>population</td>
+				<td>Population for things like cities.</td>
+			</tr>
+			<tr>
+				<td>gtopo30</td>
+				<td>Average elevation of 30'x30' area in meters (integer).</td>
+			</tr>
+			<tr>
+				<td>modification_date</td>
+				<td>Date of the last modification.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;rows total-rows="1"&gt;
+	&lt;row&gt;
+	&lt;column name="geonameid"&gt;4471888&lt;/column&gt;
+	&lt;column name="name"&gt;Hopewell Church&lt;/column&gt;
+	&lt;column name="latitude"&gt;35.36652750&lt;/column&gt;
+	&lt;column name="longitude"&gt;-80.89868430&lt;/column&gt;
+	&lt;column name="elevation"&gt;222&lt;/column&gt;
+	&lt;column name="population"&gt;0&lt;/column&gt;
+	&lt;column name="gtopo30"&gt;213&lt;/column&gt;
+	&lt;column name="modification_date"&gt;2006-01-15 00:00:00&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"1","rows":[{"row":{"geonameid":"4471888","name":"Hopewell Church",
+	"latitude":"35.36652750","longitude":"-80.89868430","elevation":"222","population":"0",
+	"gtopo30":"213","modification_date":"2006-01-15 00:00:00"}}]}
+	</pre>
+	
+</div>

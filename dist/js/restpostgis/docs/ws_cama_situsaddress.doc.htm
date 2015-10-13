@@ -1,0 +1,111 @@
+<div id="doctitle">
+	<h2>CAMA Situs Address</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v2/php-cgi/ws_cama_situsaddress.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Returns the CAMA situs address for a tax parcel ID.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>pid</td>
+				<td>Eight character parcel ID. Example: 12312312.</td>
+			</tr>
+			<tr>
+				<td>pidtype</td>
+				<td>Type of pid. Value is either 'tax' or 'common'. 'common' refers 
+					to a common pid, such as for a condo common area. In most cases
+					you'll probably use 'tax'.</td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output or
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>parcel_id</td>
+				<td>Tax parcel ID.</td>
+			</tr>
+			<tr>
+				<td>common_parcel_id</td>
+				<td>Tax parcel common ID, for things like condo common areas.</td>
+			</tr>
+			<tr>
+				<td>house_number</td>
+				<td>House number.</td>
+			</tr>
+			<tr>
+				<td>prefix</td>
+				<td>Street prefix. Exampe: 'N'.</td>
+			</tr>
+			<tr>
+				<td>street_name</td>
+				<td>Street name.</td>
+			</tr>
+			<tr>
+				<td>road_type</td>
+				<td>The type of road. Example: 'RD'</td>
+			</tr>
+			<tr>
+				<td>unit</td>
+				<td>House unit.</td>
+			</tr>
+			<tr>
+				<td>city</td>
+				<td>City.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;rows total-rows="1"&gt;
+	&lt;row&gt;
+	&lt;column name="parcel_id"&gt;11111111&lt;/column&gt;
+	&lt;column name="common_parcel_id"&gt;11111111&lt;/column&gt;
+	&lt;column name="house_number"&gt;7716&lt;/column&gt;
+	&lt;column name="prefix"/&gt;
+	&lt;column name="street_name"&gt;DENBUR&lt;/column&gt;
+	&lt;column name="road_type"&gt;DR&lt;/column&gt;
+	&lt;column name="suffix"/&gt;
+	&lt;column name="unti"/&gt;
+	&lt;column name="city"&gt;UNINC&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"1","rows":[{"row":{"parcel_id":"11111111",
+	"common_parcel_id":"11111111","house_number":"7716","prefix":"",
+	"street_name":"DENBUR","road_type":"DR",
+	"suffix":"","unit":"","city":"UNINC"}}]}
+	</pre>
+</div>

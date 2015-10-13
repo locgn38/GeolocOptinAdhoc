@@ -1,0 +1,109 @@
+<!-- Web service title. -->
+<div id="doctitle">
+	<h2>CAMA Legal Description</h2>
+</div>
+
+<!-- Web service location. -->
+<div id="doclocation">
+	<a href="v2/php-cgi/ws_cama_legal.php">Service URL</a>
+</div>
+
+<!-- Brief description of the web service. -->
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Returns CAMA legal information for a parcel ID.</p>
+</div>
+
+<!-- Web service input description. Format is a required argument for your web service. -->
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>pid</td>
+				<td>Parcel ID.</td>
+			</tr>
+			<tr>
+				<td>pidtype</td>
+				<td>Type of parcel ID being passed. Value is either 'tax' or 'common'.</td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output or
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<!-- Web service output. -->
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<!-- If the service output varies (i.e. you have the user pass a list of fields to be returned), just write it varies in a <p> tag and skip the table -->
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>parcel_id</td>
+				<td>Parcel ID.</td>
+			</tr>
+			<tr>
+				<td>common_parcel_id</td>
+				<td>Common parcel ID.</td>
+			</tr>
+			<tr>
+				<td>legal_description</td>
+				<td>Parcel legal description.</td>
+			</tr>
+			<tr>
+				<td>account_type</td>
+				<td>Account type.</td>
+			</tr>
+			<tr>
+				<td>municipality</td>
+				<td>Municipality.</td>
+			</tr>
+			<tr>
+				<td>fire_district</td>
+				<td>Fire district.</td>
+			</tr>
+			<tr>
+				<td>total_acres</td>
+				<td>Total acres.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<!-- Sample service output. -->
+<div id="docsample">
+	<h3>Sample Output</h3>
+	
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;rows total-rows="1"&gt;
+	&lt;row&gt;
+	&lt;column name="parcel_id"&gt;09910230&lt;/column&gt;
+	&lt;column name="common_parcel_id"&gt;09910230&lt;/column&gt;
+	&lt;column name="legal_description"&gt;L7 B15 M8-441&lt;/column&gt;
+	&lt;column name="account_type"&gt;INDIVIDUAL&lt;/column&gt;
+	&lt;column name="municipality"&gt;CHARLOTTE&lt;/column&gt;
+	&lt;column name="fire_district"&gt;CITY OF CHARLOTTE&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"1","rows":[{"row":{"parcel_id":"09910230","common_parcel_id":"09910230",
+	"legal_description":"L7 B15 M8-441","account_type":"INDIVIDUAL",
+	"municipality":"CHARLOTTE","fire_district":"CITY OF CHARLOTTE"}}]}
+	</pre>
+</div>

@@ -1,0 +1,86 @@
+<div id="doctitle">
+	<h2>List Fields</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v1/ws_geo_listfields.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>List the fields in a geotable.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>geotable</td>
+				<td>The name of the geotable to perform the query on.</td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output or
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>field_name</td>
+				<td>The name of the field.</td>
+			</tr>
+			<tr>
+				<td>field_type</td>
+				<td>The field type.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;rows total-rows="4"&gt;
+	&lt;row&gt;
+	&lt;column name="field_name"&gt;gid&lt;/column&gt;
+	&lt;column name="field_type"&gt;int4&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="field_name"&gt;objectid&lt;/column&gt;
+	&lt;column name="field_type"&gt;int4&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="field_name"&gt;precno&lt;/column&gt;
+	&lt;column name="field_type"&gt;int4&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="field_name"&gt;the_geom&lt;/column&gt;
+	&lt;column name="field_type"&gt;geometry&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"4","rows":[{"row":{"field_name":"gid","field_type":"int4"}},
+	{"row":{"field_name":"objectid","field_type":"int4"}},
+	{"row":{"field_name":"precno","field_type":"int4"}},
+	{"row":{"field_name":"the_geom","field_type":"geometry"}}]}
+	</pre>
+</div>

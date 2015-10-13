@@ -1,0 +1,75 @@
+<div id="doctitle">
+	<h2>Get Extent</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v1/ws_geo_getextent.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Get the extent of features from a specified geotable.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>geotable</td>
+				<td>The name of the geotable to perform the query on.</td>
+			</tr>
+			<tr>
+				<td>srid</td>
+				<td>The projection of the returned extent.</td>
+			</tr>
+			<tr>
+				<td>parameters</td>
+				<td>SQL where parameters.</td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output or
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>extent</td>
+				<td>The extent of the feature(s). Format: BOX(xmin ymin,xmax ymax)</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;rows total-rows="1"&gt;
+	&lt;row&gt;
+	&lt;column name="extent"&gt;BOX(1445460.375 491995.21875,1454555 502776.15625)&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"1","rows":[{
+	"row":{"extent":"BOX(1445460.375 491995.21875,1454555 502776.15625)"}}]}
+	</pre>
+</div>

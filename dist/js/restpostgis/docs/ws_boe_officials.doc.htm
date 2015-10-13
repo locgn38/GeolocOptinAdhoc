@@ -1,0 +1,87 @@
+<!-- Web service title. -->
+<div id="doctitle">
+	<h2>BOE Elected Officials</h2>
+</div>
+
+<!-- Web service location. -->
+<div id="doclocation">
+	<a href="v1/ws_boe_officials.php">Service URL</a>
+</div>
+
+<!-- Brief description of the web service. -->
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Elected officials for a given district type and district.</p>
+</div>
+
+<!-- Web service input description. Format is a required argument for your web service. -->
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>district_type</td>
+				<td>The type of district. Valid arguments are board_of_education, 
+				charlotte_city_council, county_commissioners, national_congressional, 
+				national_senate, state_house, state_senate. At-large are returned when 
+				available, and items with no district, such as National Senate, will ignore 
+				the district argument.</td>
+			</tr>
+			<tr>
+				<td>district</td>
+				<td>The district to be returned.</td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output or
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<!-- Web service output. -->
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<!-- If the service output varies (i.e. you have the user pass a list of fields to be returned), just write it varies in a <p> tag and skip the table -->
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>district</td>
+				<td>District.</td>
+			</tr>
+			<tr>
+				<td>representative</td>
+				<td>Name and party of the representative.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<!-- Sample service output. -->
+<div id="docsample">
+	<h3>Sample Output</h3>
+	
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;rows total-rows="1"&gt;
+	&lt;row&gt;
+	&lt;column name="district"&gt;40&lt;/column&gt;
+	&lt;column name="representative"&gt;Malcolm Graham (D)&lt;/column&gt;
+	&lt;/row&gt;
+	</rows>
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"1","rows":[{"row":{"district":"40","representative":"Malcolm Graham (D)"}}]}
+	</pre>
+</div>

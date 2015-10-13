@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script type="text/javascript" src="js/jquery-1.6.1.min.js" ></script>
+<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"></script>
+<script type="text/javascript" src="js/proj4js/lib/proj4js-combined.js" ></script>
+<script type="text/javascript" src="js/json2.js"></script>
+<script type="text/javascript" src="js/openstreetmap.js"></script>
+
+<script type="text/javascript">
+
+var map; 
+
+$(document).ready(function () {  
+    map = new OpenLayers.Map('map', {
+	maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34),
+         maxResolution: 156543.0399,
+		 numZoomLevels: "auto",
+         units: 'm',
+         projection: new OpenLayers.Projection("EPSG:4326"),
+         displayProjection: new OpenLayers.Projection("EPSG:900913")
+	});
+	
+    map.addControl(new OpenLayers.Control.LayerSwitcher());
+    
+    var osm = new OpenLayers.Layer.OSM.Mapnik(
+		    "Open Street Map",
+		    {
+                     isBaseLayer: true, 
+                     attribution: false    
+
+    });
+    
+     map.addLayers([osm]);
+
+     map.setCenter(new OpenLayers.LonLat(-104.96, 39.75).transform(
+        new OpenLayers.Projection("EPSG:4326"),map.getProjectionObject()), 9);
+});
+
+
+var buff_dist = '5280';
+$(document).ready(function () {
+
+
+//var html;
+var currentPopup;
+
+var p4326 = new OpenLayers.Projection("EPSG:4326");
+var p900913 = new OpenLayers.Projection("EPSG:900913");
+var selected_tracts = new OpenLayers.Layer.Vector("Selected Tracts");
+Proj4js.defs["EPSG:2232"] = "+proj=lcc +lat_1=39.75 +lat_2=38.45 +lat_0=37.83333333333334 +lon_0=-105.5 +x_0=914401.8288036576 +y_0=304800.6096012192 +ellps=GRS80 +datum=NAD83 +to_meter=0.3048006096012192 +no_defs"; 
+var p2232 = new OpenLayers.Projection("EPSG:2232");
+
+
+OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {                
+                defaultHandlerOptions: {
+                    'single': true,
+                    'double': false,
+                    'pixelTolerance': 4,
+                    'stopSingle': false,
+                    'stopDouble': false
+                    
+                },
+
+                initialize: function(options) {
+                    this.handlerOptions = OpenLayers.Util.extend(
+                        {}, this.defaultHandlerOptions
+                    );
+                    OpenLayers.Control.prototype.initialize.apply(
+                        this, arguments
+                    ); 
+                    this.handler = new OpenLayers.Handler.Click(
+                        this, {
+                            'click': this.trigger
+                        }, this.handlerOptions
+                    );
+                }, 
+	     
+		trigger: function(e) {
+                    
+                    var longlat = map.getLonLatFromPixel(e.xy);
+		    var xy = new OpenLayers.LonLat(longlat.lon, longlat.lat).transform(new OpenLayers.Projection("EPSG:900913"), p2232);
+                    var xy_900913 = new OpenLayers.LonLat(xy.lon, xy.lat).transform(p2232, p900913);
+                           
+                    id(xy);
+		     function id(location) { 
+                          var html, pop_change;
+                          var sum = 0;
+                          var total = 0;
+
+                           $.ajax({
+
+                                     url: "php/buffer_point.php", 
+                                     data: {lat: xy.lat, lon: xy.lon, distance: buff_dist},
+                                     dataType: "json",
+                                     //dataType:"text",
+                                     type: "POST",
+                                     success: function(data, status, xhr) {
+                                             var len = parseFloat(data.total_rows);
+                                            
+                                           
+                                              if (len == 0) {
+                                               alert("Nothing found");
+                                              }
+                                              else{
+                                              
+                                              $.each(data.rows, function(k, v) {
+                                                    pop_change = parseFloat(data.rows[k].row.pop_change)*100;
+
+                                                     sum = sum + pop_change;
+                                                     total = total + 1;
+                                                       });
+                                              var mean = sum/total;
+                                              var mean = mean.toFixed(2);
+                                              var mean = mean.toString();
+                                              var mean = mean+"%";
+                                              selected_tracts.destroy();
+                                              selected_tracts = new OpenLayers.Layer.Vector("Selected Tracts");
+                                              map.addLayer(selected_tracts);
+                                              
+                                              var p = new OpenLayers.Format.GeoJSON();
+                                              var gformat = new OpenLayers.Format.GeoJSON();    					   
+                                              var gcoords='';
+                                             $.each(data.rows, function(k, v) {
+                                                 var last = len - 1; 
+                                                 var coords = JSON.stringify(data.rows[k].row.geojson);
+                                                
+                                                 if (k < last){
+                                                 gcoords += '{"geometry":'+coords+'},';
+                                                 }
+                                                 else{ 
+                                                 gcoords += '{"geometry":'+coords+'}';
+                                                 }
+                                               });  
+                                             gcoords = '['+gcoords+']';
+                                                                     
+      					     var gg = '{"type":"FeatureCollection", "features":' + gcoords + '}';
+                                             var feats = gformat.read(gg);
+                                             selected_tracts.addFeatures(feats);   
+                                          
+                                              }    
+                                          
+                                            if (currentPopup != null && currentPopup.visible()) {
+                                                 currentPopup.hide();
+                                                currentPopup.destroy();
+                                                  }
+
+                       		             info = new OpenLayers.Popup.FramedCloud(
+                                             "data",
+                                             xy_900913,
+		                             null,
+                                             mean,
+                                             null,
+                                             true
+                                            );
+                                             currentPopup = info;
+                                             map.addPopup(info);
+                                             },
+                                     error: function(xhr, status, error) {
+                                       $().trigger("ajax:failure", [xhr, status, error]);
+                                       
+                                             alert(error);
+                                            
+                                        }                       
+                          });
+                         }
+                                     
+                                    }
+                        		
+                    
+    })
+    
+
+    var click = new OpenLayers.Control.Click();
+    map.addControl(click);
+    click.activate();
+   
+   
+
+});
+function onChange(){
+    buff_dist = $("#selectdistance").val();
+}
+
+</script>
+</head>
+<body>
+
+
+<h2>Using the Buffer Point Function</h2> 
+
+<div id ="dropDown" class="dropDown">
+<div class="dropDownText">Choose a distance to select tracts by </div>
+<form name="distance"onSubmit="return false;">
+    <select id="selectdistance" onChange="onChange()" >
+
+       <option value = "5280" selected= "selected"> 1 Mile </option>
+        <option value= "660"> 1/8 Mile </option>
+        <option value= "1320"> 1/4 Mile </option> 
+        <option value= "2640"> 1/2 Mile </option>
+        <option value= "5280"> 1 Mile </option>     
+        <option value= "10560"> 2 Miles </option> 
+        <option value= "26400"> 5 Miles </option> 
+             
+   </select>
+
+   </form>
+</div>
+      
+
+<div id="map" style="height: 800px; width: 1200px;">
+	
+</div>
+
+</body>
+</html>
+
+
+

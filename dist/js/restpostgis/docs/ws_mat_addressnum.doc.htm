@@ -1,0 +1,144 @@
+<div id="doctitle">
+	<h2>Address Number Lookup</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v1/ws_mat_addressnum.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Looks up a master address table record by the address number.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>addressnum</td>
+				<td>MAT address number.</td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output or
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>objectid</td>
+				<td>MAT address number.</td>
+			</tr>
+			<tr>
+				<td>x_coordinate</td>
+				<td>X coordinate.</td>
+			</tr>
+			<tr>
+				<td>y_coordinate</td>
+				<td>Y coordinate.</td>
+			</tr>
+			<tr>
+				<td>longitude</td>
+				<td>Longitude.</td>
+			</tr>
+			<tr>
+				<td>latitude</td>
+				<td>Latitude.</td>
+			</tr>
+			<tr>
+				<td>house_number</td>
+				<td>House number.</td>
+			</tr>
+			<tr>
+				<td>prefix</td>
+				<td>Street prefix. Example: 'N'</td>
+			</tr>
+			<tr>
+				<td>street_name</td>
+				<td>Street name.</td>
+			</tr>
+			<tr>
+				<td>postal_city</td>
+				<td>Postal city.</td>
+			</tr>
+			<tr>
+				<td>road_type</td>
+				<td>The type of road. Example: 'RD'</td>
+			</tr>
+			<tr>
+				<td>suffix</td>
+				<td>Street suffix.</td>
+			</tr>
+			<tr>
+				<td>unit</td>
+				<td>House unit.</td>
+			</tr>
+			<tr>
+				<td>city</td>
+				<td>Actual jurisdiction.</td>
+			</tr>
+			<tr>
+				<td>zipcode</td>
+				<td>Zipcode.</td>
+			</tr>
+			<tr>
+				<td>parcel_id</td>
+				<td>Tax parcel ID.</td>
+			</tr>
+			<tr>
+				<td>address</td>
+				<td>Complete address as single string.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;rows total-rows="1"&gt;
+	&lt;row&gt;
+	&lt;column name="objectid"&gt;4926&lt;/column&gt;
+	&lt;column name="x_coordinate"&gt;1448465&lt;/column&gt;
+	&lt;column name="y_coordinate"&gt;534779&lt;/column&gt;
+	&lt;column name="longitude"&gt;-80.6656375127513&lt;/column&gt;
+	&lt;column name="latitude"&gt;35.2239327682599&lt;/column&gt;
+	&lt;column name="house_number"&gt;1025&lt;/column&gt;
+	&lt;column name="prefix"/&gt;
+	&lt;column name="street_name"&gt;ISLEWORTH&lt;/column&gt;
+	&lt;column name="postal_city"&gt;CHARLOTTE&lt;/column&gt;
+	&lt;column name="road_type"&gt;AV&lt;/column&gt;
+	&lt;column name="suffix"/&gt;
+	&lt;column name="unit"/&gt;
+	&lt;column name="city"&gt;CHARLOTTE&lt;/column&gt;
+	&lt;column name="zipcode"&gt;28203&lt;/column&gt;
+	&lt;column name="parcel_id"&gt;12311209&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"1","rows":[{"row":{"objectid":"4926","x_coordinate":"1448465",
+	"y_coordinate":"534779","longitude":"-80.6656375127513","latitude":"35.2239327682599",
+	"house_number":"1025","prefix":"","street_name":"ISLEWORTH","postal_city":"CHARLOTTE",
+	"road_type":"AV","suffix":"","unit":"","city":"CHARLOTTE","zipcode":"28203",
+	"parcel_id":"12311209"}}]}
+	</pre>
+</div>

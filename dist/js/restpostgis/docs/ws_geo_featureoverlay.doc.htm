@@ -1,0 +1,96 @@
+<div id="doctitle">
+	<h2>Feature Overlay</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v1/ws_geo_featureoverlay.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Overlay features from one PostGIS layer onto another PostGIS layer and
+ 		return the results.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>from_geotable</td>
+				<td>The geotable that has the feature(s) to overlay. Example: If you want
+					to overlay a parcel on another layer, you would set tax_parcels as the 
+					from_geotable.</td>
+			</tr>
+			<tr>
+				<td>to_geotable</td>
+				<td>The geotable that has the features you want selected by the selected
+					feature(s) of the from_geotable.</td>
+			</tr>
+			<tr>
+				<td>fields</td>
+				<td>Comma delimited list of fields to be returned. Fields from the to_geotable
+					should be given the prefix 't', like t.precno, while fields from the
+					from_geotable should have a prefix of 'f', like f.pid.</td>
+			</tr>
+			<tr>
+				<td>parameters</td>
+				<td>SQL where parameters. Parameters for the from_table
+					must have a 'f' prefix, and parameters for the to_table must have a 't'
+					prefix. Example: f.pid = '11111111'.</td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output, 'kml' for kml output, or
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<p>Service output is entirely dependant upon the fields parameter.</p>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;rows total-rows="1"&gt;
+	&lt;row&gt;
+	&lt;column name="pid"&gt;11111111&lt;/column&gt;
+	&lt;column name="precno"&gt;201&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"1","rows":[{"row":{"pid":"11111111","precno":"201"}}]}
+	</pre>
+	
+	<p>Sample KML Output</p>
+	<pre>
+    &lt;?xml version="1.0" encoding="utf-8"?&gt;
+    &lt;kml xmlns="http://www.opengis.net/kml/2.2"&gt;
+      &lt;Document&gt;
+        &lt;Placemark&gt;
+          &lt;name&gt;Monroe Middle School&lt;/name&gt;
+          &lt;Point&gt;
+            &lt;coordinates&gt;-80.538976082676783,34.973003351596738&lt;/coordinates&gt;
+          &lt;/Point&gt;
+          &lt;ExtendedData&gt;
+            &lt;Data name="name"&gt;
+              &lt;value&gt;Monroe Middle School&lt;/value&gt;
+            &lt;/Data&gt;
+          &lt;/ExtendedData&gt;
+        &lt;/Placemark&gt;
+      &lt;/Document&gt;
+    &lt;/kml&gt;
+	</pre>
+</div>

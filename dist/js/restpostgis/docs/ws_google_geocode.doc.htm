@@ -1,0 +1,93 @@
+<div id="doctitle">
+	<h2>Google Geocode</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v1/ws_google_geocode.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Uses Google's geocoding service to geolocate an address.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>address</td>
+				<td>Address to geocode. Example: 5501 Ruth Dr., Charlotte, NC</td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output or
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<p>Output format is that specified by the Google Maps API. For more details, 
+	<a href="http://www.google.com/apis/maps/documentation/services.html#Geocoding" target="_blank">click here</a>.</p>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;kml&gt;
+	&lt;Response&gt;
+	&lt;name&gt;5501 ruth_dr,charlotte nc&lt;/name&gt;
+	&lt;Status&gt;
+	&lt;code&gt;200&lt;/code&gt;
+	&lt;request&gt;geocode&lt;/request&gt;
+	&lt;/Status&gt;
+	&lt;Placemark id="p1"&gt;
+	&lt;address&gt;5501 Ruth Dr, Charlotte, NC 28215, USA&lt;/address&gt;
+	&lt;AddressDetails Accuracy="8"&gt;
+	&lt;Country&gt;
+	&lt;CountryNameCode&gt;US&lt;/CountryNameCode&gt;
+	&lt;AdministrativeArea&gt;
+	&lt;AdministrativeAreaName&gt;NC&lt;/AdministrativeAreaName&gt;
+	&lt;SubAdministrativeArea&gt;
+	&lt;SubAdministrativeAreaName&gt;Mecklenburg&lt;/SubAdministrativeAreaName&gt;
+	&lt;Locality&gt;
+	&lt;LocalityName&gt;Charlotte&lt;/LocalityName&gt;
+	&lt;Thoroughfare&gt;
+	&lt;ThoroughfareName&gt;5501 Ruth Dr&lt;/ThoroughfareName&gt;
+	&lt;/Thoroughfare&gt;
+	&lt;PostalCode&gt;
+	&lt;PostalCodeNumber&gt;28215&lt;/PostalCodeNumber&gt;
+	&lt;/PostalCode&gt;
+	&lt;/Locality&gt;
+	&lt;/SubAdministrativeArea&gt;
+	&lt;/AdministrativeArea&gt;
+	&lt;/Country&gt;
+	&lt;/AddressDetails&gt;
+	&lt;Point&gt;
+	&lt;coordinates&gt;-80.759640,35.248453,0&lt;/coordinates&gt;
+	&lt;/Point&gt;
+	&lt;/Placemark&gt;
+	&lt;/Response&gt;
+	&lt;/kml&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"name":"5501 ruth_dr,charlotte nc","Status":{"code":200,"request":"geocode"},
+	"Placemark":[{"id":"p1","address":"5501 Ruth Dr, Charlotte, NC 28215, USA",
+	"AddressDetails":{"Country":{"CountryNameCode":"US",
+	"AdministrativeArea":{"AdministrativeAreaName":"NC",
+	"SubAdministrativeArea":{"SubAdministrativeAreaName":"Mecklenburg",
+	"Locality":{"LocalityName":"Charlotte","Thoroughfare":{"ThoroughfareName":"5501 Ruth Dr"},
+	"PostalCode":{"PostalCodeNumber":"28215"}}}}},"Accuracy": 8},
+	"Point":{"coordinates":[-80.759640,35.248453,0]}}]}
+	</pre>
+</div>

@@ -1,0 +1,106 @@
+<!-- Web service title. -->
+<div id="doctitle">
+	<h2>Stage Gage Readings</h2>
+</div>
+
+<!-- Web service location. -->
+<div id="doclocation">
+	<a href="v1/ws_stagegage_readings.php">Service URL</a>
+</div>
+
+<!-- Brief description of the web service. -->
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Retrieve the latest readings of all the Stage (Stream) Gages inside Mecklenburg County.</p>
+</div>
+
+<!-- Web service input description. Format is a required argument for your web service. -->
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output or
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<!-- Web service output. -->
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<!-- If the service output varies (i.e. you have the user pass a list of fields to be returned), just write it varies in a <p> tag and skip the table -->
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>sensorid</td>
+				<td>Stage Gage Number used by Charlotte Mecklenburg Storm Water Services (Alert).</td>
+			</tr>
+			<tr>
+				<td>usgs_station_no</td>
+				<td>Stage Gage Number used by USGS (NWIS).</td>
+			</tr>
+			<tr>
+				<td>sitename</td>
+				<td>Stage Gage Name.</td>
+			</tr>
+			<tr>
+				<td>longitude</td>
+				<td>Longitude.</td>
+			</tr>
+			<tr>
+				<td>latitude</td>
+				<td>Latitude.</td>
+			</tr>
+			<tr>
+				<td>streamlevel</td>
+				<td>Last reported stream level in feet.</td>
+			</tr>
+			<tr>
+				<td>streamlevelsea</td>
+				<td>Last reported stream level above mean sea level in feet.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<!-- Sample service output. -->
+<div id="docsample">
+	<h3>Sample Output</h3>
+	
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;rows total-rows="50"&gt;
+	&lt;row&gt;
+	&lt;column name="sensorid"&gt;6501&lt;/column&gt;
+	&lt;column name="usgs_station_no"&gt;02146300&lt;/column&gt;
+	&lt;column name="sitename"&gt;Irwin Crk. @ WWTP&lt;/column&gt;
+	&lt;column name="longitude"&gt;80.904444400000003&lt;/column&gt;
+	&lt;column name="latitude"&gt;35.197777799999997&lt;/column&gt;
+	&lt;column name="streamlevel"&gt;0.73&lt;/column&gt;
+	&lt;column name="streamlevelsea"&gt;591.6&lt;/column&gt;
+	&lt;/row&gt;
+	.
+	.
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"50","rows":[{"row":
+	{"sensorid":"6501","usgs_station_no":"02146300","sitename":"Irwin Crk. @ WWTP","longitude":"-80.904444400000003","latitude":"35.197777799999997","streamlevel":"0.73","streamlevelsea":"591.6"}},
+	.
+	.
+	]}
+	</pre>
+</div>

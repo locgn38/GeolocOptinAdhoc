@@ -1,0 +1,105 @@
+<div id="doctitle">
+	<h2>Street Name Search</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v1/ws_mat_streetname.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Performs a fuzzy search for a street name in the master address table. Useful for
+		auto complete boxes.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>streetname</td>
+				<td>Street name.</td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output, 
+					'json' for JSON output, and 'text' for plain text output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>street_name</td>
+				<td>Street name.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;rows total-rows="6"&gt;
+	&lt;row&gt;
+	&lt;column name="street_name"&gt;RUTH&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="street_name"&gt;RUTH FERRELL&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="street_name"&gt;RUTH HAVEN&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="street_name"&gt;RUTH POLK&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="street_name"&gt;RUTHERFORD&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;row&gt;
+	&lt;column name="street_name"&gt;RUTHERGLEN&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"6","rows":[{"row":{"street_name":"RUTH"}},
+	{"row":{"street_name":"RUTH FERRELL"}},
+	{"row":{"street_name":"RUTH HAVEN"}},{"row":{"street_name":"RUTH POLK"}},
+	{"row":{"street_name":"RUTHERFORD"}},{"row":{"street_name":"RUTHERGLEN"}}]}
+	</pre>
+	
+	<p> Sample Text Output</p>
+	<pre>
+	RUA
+	RUBIN LURA
+	RUBINE
+	RUBY
+	RUBY HILL
+	RUBY VALLEY
+	RUCKER CLIFF
+	RUDD
+	RUDDY
+	RUDENCE
+	RUDOLPH
+	RUDOLPH DADEY
+	RUDOLPH PLACE
+	RUDWICK
+	RUDYARD
+	RUFFIN
+	</pre>
+</div>

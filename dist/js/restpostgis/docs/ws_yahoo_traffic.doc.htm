@@ -1,0 +1,87 @@
+<div id="doctitle">
+	<h2>Yahoo! Traffic</h2>
+</div>
+
+<div id="doclocation">
+	<a href="v1/ws_yahoo_traffic.php">Service URL</a>
+</div>
+
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Gets a GeoRSS feed of traffic incident information from Yahoo!.</p>
+</div>
+
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>zip</td>
+				<td>Zip code to use for traffic incidents. Leave as empty string if using 
+				longitude/latitude.</td>
+			</tr>
+			<tr>
+				<td>longitude</td>
+				<td>Longitude to use for traffic incidents. Leave as empty string if using
+				zip code.</td>
+			</tr>
+			<tr>
+				<td>latitude</td>
+				<td>Latitude to use for traffic incidents. Leave as empty string if using 
+				zip code.</td>
+			</tr>
+			<tr>
+				<td>radius</td>
+				<td>Radius in miles to use to search for traffic incidents around zip code 
+				or coordinate.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<p>Output format is that specified by Yahoo! and is XML-only. For more details, 
+	<a href="http://developer.yahoo.com/traffic/rss/V1/index.html" target="_blank">click here</a>.</p>
+</div>
+
+<div id="docsample">
+	<h3>Sample Output</h3>
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+	&lt;rss xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" version="2.0"&gt;
+	&lt;channel&gt;
+	  &lt;title&gt;Yahoo! Traffic Alerts&lt;/title&gt;
+	  &lt;link&gt;http://maps.yahoo.com&lt;/link&gt;
+	  &lt;language&gt;en&lt;/language&gt;
+	  &lt;description&gt;Traffic Alerts&lt;/description&gt;
+	  &lt;copyright&gt;Copyright (c) 2005 Yahoo! Inc. All rights reserved.&lt; /copyright&gt;
+	  &lt;lastBuildDate&gt;Tue, 18 Oct 2005 15:00:10 -0700&lt;/lastBuildDate&gt;
+	  &lt;image&gt;
+	    &lt;url&gt;http://us.i1.yimg.com/us.yimg.com/i/us/nt/b/rss/rss_search.gif&lt;/url&gt;
+	    &lt;title&gt;Yahoo! Maps&lt;/title&gt;
+	    &lt;link&gt;http://maps.yahoo.com&lt;/link&gt;
+	    &lt;width&gt;142&lt;/width&gt;
+	    &lt;height&gt;18&lt;/height&gt;
+	  &lt;/image&gt;
+	  &lt;item&gt;
+	    &lt;title&gt;Hazardous driving conditions, on US-101 at EMBARCADERO RD&lt;/title&gt;
+	    &lt;link&gt;http://img.maps.yahoo.com/mapimage?MAPDATA=dzmAlOd6wXVp-&lt;/link&gt;
+	    &lt;description&gt;Traffic Hazard Vehicle in Center Divider 2:46PM UNK VEH W 
+		HAZARDS ON; RESPONDING OFFICERS STATUS; 2:51PM CHP Unit Enroute;&lt;/description&gt;
+	    &lt;geo:lat&gt;37.452340&lt;/geo:lat&gt;
+	    &lt;geo:long&gt;-122.127301&lt;/geo:long&gt;
+	    &lt;guid isPermaLink="false"&gt;http://img.maps.yahoo.com/mapimage?MAPDATA=--&lt;/guid&gt;
+	    &lt;pubDate&gt;Tue, 18 Oct 2005 14:46:03 -0700&lt;/pubDate&gt;
+	&lt;/item&gt;
+	&lt;/channel&gt;
+	&lt;/rss&gt;
+	</pre>
+	
+
+</div>

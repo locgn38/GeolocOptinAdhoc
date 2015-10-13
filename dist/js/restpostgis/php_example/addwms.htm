@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script type="text/javascript" src="js/jquery-1.6.1.min.js" ></script>
+<script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"></script>
+<script type="text/javascript" src="js/proj4js/lib/proj4js-combined.js" ></script>
+<script type="text/javascript" src="js/json2.js"></script>
+<script type="text/javascript" src="js/openstreetmap.js"></script>
+
+<script type="text/javascript">
+
+var map; 
+
+$(document).ready(function () {  
+    map = new OpenLayers.Map('map', {
+	maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34),
+         maxResolution: 156543.0399,
+		 numZoomLevels: "auto",
+         units: 'm',
+         projection: new OpenLayers.Projection("EPSG:4326"),
+         displayProjection: new OpenLayers.Projection("EPSG:900913")
+	});
+	
+    map.addControl(new OpenLayers.Control.LayerSwitcher());
+    
+    var osm = new OpenLayers.Layer.OSM.Mapnik(
+		    "Open Street Map",
+		    {
+                     isBaseLayer: true, 
+                     attribution: false    
+
+    });
+    
+     map.addLayers([osm]);
+
+     map.setCenter(new OpenLayers.LonLat(-104.96, 39.75).transform(
+        new OpenLayers.Projection("EPSG:4326"),map.getProjectionObject()), 9);
+});
+
+$(document).ready(function () {    
+ var wms = new OpenLayers.Layer.WMS("Muni Boundaries 2010",
+		"http://gis.drcog.org/geoserver/gwc/service/wms?", 
+		{layers: 'DRCOG:muni_2010',
+		 format: 'image/png',
+		 transparent: 'true',
+		 isBaseLayer: 'false',
+		 projection: 'EPSG:2232',
+		 reproject: 'true'
+		});
+     map.addLayer(wms);
+
+}); 
+
+</script>
+</head>
+<body>
+
+
+<h2>Add a wms layer</h2> 
+
+<div id="map" style="height: 400px; width: 600px;">
+	
+</div>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,172 @@
+<!-- Web service title. -->
+<div id="doctitle">
+	<h2>CAMA Building</h2>
+</div>
+
+<!-- Web service location. -->
+<div id="doclocation">
+	<a href="v2/php-cgi/ws_cama_building.php">Service URL</a>
+</div>
+
+<!-- Brief description of the web service. -->
+<div id="docdescription">
+	<h3>Description</h3>
+	<p>Returns CAMA building information for a parcel ID.</p>
+</div>
+
+<!-- Web service input description. Format is a required argument for your web service. -->
+<div id="docinput">
+	<h3>Service Arguments</h3>
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>pid</td>
+				<td>Parcel ID.</td>
+			</tr>
+			<tr>
+				<td>pidtype</td>
+				<td>Type of parcel ID being passed. Value is either 'tax' or 'common'.</td>
+			</tr>
+			<tr>
+				<td>format</td>
+				<td>Format for the output. Value is either 'xml' for xml output or
+					'json' for JSON output.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<!-- Web service output. -->
+<div id="docoutput">
+	<h3>Service Output</h3>
+	<!-- If the service output varies (i.e. you have the user pass a list of fields to be returned), just write it varies in a <p> tag and skip the table -->
+	<table id="doctable">
+		<tbody>
+			<tr>
+				<th>PARAMETER</th>
+				<th>DESCRIPTION</th>
+			</tr>
+			<tr>
+				<td>parcel_id</td>
+				<td>Parcel ID.</td>
+			</tr>
+			<tr>
+				<td>common_parcel_id</td>
+				<td>Common parcel ID.</td>
+			</tr>
+			<tr>
+				<td>card_number</td>
+				<td>Tax card number.</td>
+			</tr>
+			<tr>
+				<td>property_use_description</td>
+				<td>Property use description.</td>
+			</tr>
+			<tr>
+				<td>units</td>
+				<td>Number of units.</td>
+			</tr>
+			<tr>
+				<td>year_built</td>
+				<td>Year structure was built.</td>
+			</tr>
+			<tr>
+				<td>total_square_feet</td>
+				<td>Total square feet of structure.</td>
+			</tr>
+			<tr>
+				<td>heated_square_feet</td>
+				<td>Heated square feet of structure.</td>
+			</tr>
+			<tr>
+				<td>foundation_description</td>
+				<td>Description of the structure's foundation.</td>
+			</tr>
+			<tr>
+				<td>exterior_wall_description</td>
+				<td>Description of the exterior wall type.</td>
+			</tr>
+			<tr>
+				<td>heat_type</td>
+				<td>Type of heating in structure.</td>
+			</tr>
+			<tr>
+				<td>ac_type</td>
+				<td>Type of AC in structure.</td>
+			</tr>
+			<tr>
+				<td>stories</td>
+				<td>Number of stories in structure.</td>
+			</tr>
+			<tr>
+				<td>bedrooms</td>
+				<td>Number of bedrooms in structure.</td>
+			</tr>
+			<tr>
+				<td>full_baths</td>
+				<td>Number of full baths.</td>
+			</tr>
+			<tr>
+				<td>three_quarter_baths</td>
+				<td>Number of 3/4 baths.</td>
+			</tr>
+			<tr>
+				<td>half_baths</td>
+				<td>Number of 1/2 baths.</td>
+			</tr>
+			<tr>
+				<td>building_type</td>
+				<td>Type of building.</td>
+			</tr>
+			<tr>
+				<td>building_value</td>
+				<td>Building value in dollars.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<!-- Sample service output. -->
+<div id="docsample">
+	<h3>Sample Output</h3>
+	
+	<p>Sample XML Output</p>
+	<pre>
+	&lt;rows total-rows="1"&gt;
+	&lt;row&gt;
+	&lt;column name="parcel_id"&gt;09910230&lt;/column&gt;
+	&lt;column name="common_parcel_id"&gt;09910230&lt;/column&gt;
+	&lt;column name="card_number"&gt;1&lt;/column&gt;
+	&lt;column name="property_use_description"&gt;Single-Fam&lt;/column&gt;
+	&lt;column name="units"&gt;1&lt;/column&gt;
+	&lt;column name="year_built"&gt;1959&lt;/column&gt;
+	&lt;column name="total_square_feet"&gt;1300&lt;/column&gt;
+	&lt;column name="heated_square_feet"&gt;1222&lt;/column&gt;
+	&lt;column name="foundation_description"&gt;CRAWL SPACE&lt;/column&gt;
+	&lt;column name="exterior_wall_description"&gt;FACE BRICK&lt;/column&gt;
+	&lt;column name="heat_type"&gt;AIR-DUCTED&lt;/column&gt;
+	&lt;column name="ac_type"&gt;AC-CENTRAL&lt;/column&gt;
+	&lt;column name="stories"&gt;1 STORY&lt;/column&gt;
+	&lt;column name="bedrooms"&gt;3&lt;/column&gt;
+	&lt;column name="full_baths"&gt;1&lt;/column&gt;
+	&lt;column name="three_quarter_baths"/&gt;
+	&lt;column name="half_baths"&gt;1&lt;/column&gt;
+	&lt;column name="building_value"&gt;100000&lt;/column&gt;
+	&lt;/row&gt;
+	&lt;/rows&gt;
+	</pre>
+	
+	<p>Sample JSON Output</p>
+	<pre>
+	{"total_rows":"1","rows":[{"row":{"parcel_id":"09910230","common_parcel_id":"09910230",
+	"card_number":"1","property_use_description":"Single-Fam","units":"1",
+	"year_built":"1959","total_square_feet":"1300","heated_square_feet":"1222",
+	"foundation_description":"CRAWL SPACE","exterior_wall_description":"FACE BRICK",
+	"heat_type":"AIR-DUCTED","ac_type":"AC-CENTRAL","stories":"1 STORY","bedrooms":"3",
+	"full_baths":"1","three_quarter_baths":"","half_baths":"1","building_value":"100000"}}]}
+	</pre>
+</div>
